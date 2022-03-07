@@ -3,7 +3,10 @@ package com.mudhut.secondsapp.di
 import android.content.Context
 import com.mudhut.secondsapp.data.network.APIservice
 import com.mudhut.secondsapp.domain.respositories.AuthenticationRepository
+import com.mudhut.secondsapp.domain.respositories.IAuthenticationRepository
 import com.mudhut.secondsapp.domain.utils.BASE_URL
+import com.mudhut.secondsapp.domain.utils.CustomCoroutineDispatcher
+import com.mudhut.secondsapp.domain.utils.ICustomCoroutineDispatcher
 import com.mudhut.secondsapp.domain.utils.NetworkAvailabilityInterceptor
 import dagger.Module
 import dagger.Provides
@@ -47,8 +50,13 @@ object AppModule {
         return retrofit.create(APIservice::class.java)
     }
 
+    @Singleton
     @Provides
-    fun providesAuthenticationRepository(apiService: APIservice): AuthenticationRepository {
+    fun providesCustomCoroutineDispatcher() =
+        CustomCoroutineDispatcher() as ICustomCoroutineDispatcher
+
+    @Provides
+    fun providesAuthenticationRepository(apiService: APIservice): IAuthenticationRepository {
         return AuthenticationRepository(apiService)
     }
 }

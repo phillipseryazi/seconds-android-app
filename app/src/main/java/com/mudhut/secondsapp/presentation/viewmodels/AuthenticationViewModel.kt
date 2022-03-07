@@ -4,7 +4,7 @@ import android.util.Patterns
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mudhut.secondsapp.data.models.User
-import com.mudhut.secondsapp.domain.respositories.AuthenticationRepository
+import com.mudhut.secondsapp.domain.respositories.IAuthenticationRepository
 import com.mudhut.secondsapp.domain.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -39,7 +39,7 @@ sealed interface AuthUiState {
 
 @HiltViewModel
 class AuthenticationViewModel @Inject constructor(
-    private val repository: AuthenticationRepository
+    private val repository: IAuthenticationRepository
 ) : ViewModel() {
 
     var registrationUiState = MutableStateFlow(AuthUiState.RegistrationUiState())
