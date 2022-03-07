@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 class AuthenticationRepository @Inject constructor(
-    private val apiService: APIservice
+    private val apiService: APIservice,
 ) : IAuthenticationRepository {
     private val tag = "AuthenticationRepository"
     override fun login(user: User): Flow<Resource<User>> = flow {
